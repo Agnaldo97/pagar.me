@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: "no"
+    environment:
+      POSTGRES_DB: pagar_me
+      POSTGRES_USER: agnaldo
+      POSTGRES_PASSWORD: pagar_me*2019
+    ports:
+      - 5432:5432
