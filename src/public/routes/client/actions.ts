@@ -17,6 +17,8 @@ export async function createClient(
 
     if (verifyClient) throw new ServiceError("client-already-created")
     const client: IClient = await clientService.create(model);
+    delete client["dataValues"].password;
+
 
     res.status(200).json({ client });
   } catch (err) {
