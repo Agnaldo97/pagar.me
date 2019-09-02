@@ -30,13 +30,13 @@ export class PayablesDTO extends Model implements IPayables {
             //new Date(Date.now() + 1000 /*sec*/ * 60 /*min*/ * 60 /*hour*/ * 24 /*day*/ * 10)
             payables.paymentDate = new Date(Date.now() + 1000 /*sec*/ * 60 /*min*/ * 60 /*hour*/ * 24 /*day*/ * 30)
             //Calc Fee
-            payables.amountPaid = transaction.value * config.FEE_CREDIT_CARD
+            payables.amountPaid = transaction.value - (transaction.value * config.FEE_CREDIT_CARD)
         } else {
             payables.transactionID = transaction.id
             payables.status = "paid"
             payables.paymentDate = new Date();
             //Calc Fee
-            payables.amountPaid = transaction.value * config.FEE_DEBIT_CARD
+            payables.amountPaid = transaction.value - (transaction.value * config.FEE_CREDIT_CARD)
        }
     }
 }

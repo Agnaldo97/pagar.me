@@ -4,6 +4,8 @@ import * as transactionService from "../../services/Transaction";
 import * as payablesService from "../../services/Payables";
 import * as transactionValidator from "../../../validators/transaction";
 import { ITransaction } from '../../../interfaces/ITransaction';
+import { IPayables } from "../../../interfaces/IPayables";
+
 
 export async function createTransaction(
   req: Request,
@@ -11,11 +13,11 @@ export async function createTransaction(
   next: NextFunction
 ): Promise<void> {
   try {
-    const model: ITransaction  = await transactionValidator.validateCreate(req.body);
+    const model: ITransaction = await transactionValidator.validateCreate(req.body);
     const transaction: ITransaction = await transactionService.create(model);
-    await payablesService.create(transaction);
+    const payables = await payablesService.create(transaction);
 
-    res.status(200).json({ transaction });
+    res.status(200).json({ transaction, payables });
   } catch (err) {
     errorHandler(err, res, next);
   }
