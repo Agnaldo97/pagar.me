@@ -12,7 +12,6 @@ export async function create(transaction: ITransaction): Promise<TransactionDTO>
     expirationDate: new Date(),
     emailClient: transaction.emailClient,
     cvv: transaction.cvv
-  
   });
   return response;
 }

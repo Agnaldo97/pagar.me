@@ -1,6 +1,7 @@
 import { Model, Column, Table, PrimaryKey, AutoIncrement, BeforeCreate } from "sequelize-typescript";
 import { IPayables } from "../interfaces/IPayables";
 import { ITransaction } from "../interfaces/ITransaction";
+import * as config from "../config";
 
 @Table({ modelName: "pagaveis" })
 export class PayablesDTO extends Model implements IPayables {
@@ -28,12 +29,14 @@ export class PayablesDTO extends Model implements IPayables {
             payables.status = "waiting_funds"
             //new Date(Date.now() + 1000 /*sec*/ * 60 /*min*/ * 60 /*hour*/ * 24 /*day*/ * 10)
             payables.paymentDate = new Date(Date.now() + 1000 /*sec*/ * 60 /*min*/ * 60 /*hour*/ * 24 /*day*/ * 30)
-            payables.amountPaid = transaction.value * 0.5
+            //Calc Fee
+            payables.amountPaid = transaction.value * config.FEE_CREDIT_CARD
         } else {
             payables.transactionID = transaction.id
             payables.status = "paid"
             payables.paymentDate = new Date();
-            payables.amountPaid = transaction.value * 0.3
+            //Calc Fee
+            payables.amountPaid = transaction.value * config.FEE_DEBIT_CARD
        }
     }
 }
