@@ -9,8 +9,6 @@ export async function errorHandler(
   switch (err.message) {
     case "client-already-created":
       return res.status(401).send({ message: "Cliente já registrado." });
-    case "object-invalid":
-      return res.status(401).send({ message: "Cliente inválido." });
     case "invalid-password":
       return res.status(401).send({ message: "Dados inválidos" });
     default:

@@ -24,7 +24,7 @@ export class ClientDTO extends Model implements IClient {
         client.password = hash;
     }
 
-    public checkPassword(password: string): Promise<void> {
+    public checkPassword(password: string) {
         return bcrypt.compare(this.password, password);
     }
 }

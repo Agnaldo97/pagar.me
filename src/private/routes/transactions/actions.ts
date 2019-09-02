@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { errorHandler, } from "../../../errors/Transaction";
 import * as transactionService from "../../services/Transaction";
+import * as payablesService from "../../services/Payables";
 import * as transactionValidator from "../../../validators/transaction";
 import { ITransaction } from '../../../interfaces/ITransaction';
 
@@ -12,6 +13,7 @@ export async function createTransaction(
   try {
     const model: ITransaction  = await transactionValidator.validateCreate(req.body);
     const transaction: ITransaction = await transactionService.create(model);
+    await payablesService.create(transaction);
 
     res.status(200).json({ transaction });
   } catch (err) {
