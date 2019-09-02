@@ -1,9 +1,9 @@
 import { Model, Column, Table, PrimaryKey, AutoIncrement, BeforeCreate } from "sequelize-typescript";
-import { IUser } from "../interfaces/IUser";
+import { IClient } from "../interfaces/IClient";
 import * as bcrypt from "../utils/bcrypt";    
 
-@Table({ modelName: "usuario" })
-export class UserDTO extends Model implements IUser {
+@Table({ modelName: "cliente" })
+export class ClientDTO extends Model implements IClient {
     @AutoIncrement
     @PrimaryKey
     @Column
@@ -19,9 +19,9 @@ export class UserDTO extends Model implements IUser {
     email!: string;
 
     @BeforeCreate
-    public static async setPassword(user: { password: string }){
-        const hash = await bcrypt.hash(user.password);
-        user.password = hash;
+    public static async setPassword(client: { password: string }){
+        const hash = await bcrypt.hash(client.password);
+        client.password = hash;
     }
 
     public checkPassword(password: string): Promise<void> {

@@ -1,5 +1,5 @@
 import { joi, validateAsPromise } from "./joi.config";
-import { IUser } from "../interfaces/IUser";
+import { IClient } from "../interfaces/IClient";
 
 const create = joi.object().keys({
   name: joi.string().required(),
@@ -12,12 +12,12 @@ const login = joi.object().keys({
   password: joi.string().required()
 });
 
-export function validateCreate(model: any): Promise<IUser> {
-  return validateAsPromise<IUser>(model, create);
+export function validateCreate(model: any): Promise<IClient> {
+  return validateAsPromise<IClient>(model, create);
 }
 
-export function validateLogin(model: any): Promise<IUser> {
-  return validateAsPromise<IUser>(model, login);
+export function validateLogin(model: any): Promise<IClient> {
+  return validateAsPromise<IClient>(model, login);
 }
 
 

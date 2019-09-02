@@ -1,8 +1,8 @@
 import * as express from "express";
-import { UserDTO } from "../models/UserDTO";
+import { ClientDTO } from "../models/ClientDTO";
 
 declare module "express" {
   interface Request {
-    user?: UserDTO;
+    client?: ClientDTO;
   }
 }

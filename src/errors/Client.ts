@@ -7,10 +7,10 @@ export async function errorHandler(
 ): Promise<any> {
 
   switch (err.message) {
-    case "user-already-created":
-      return res.status(401).send({ message: "Usuário já registrado." });
+    case "client-already-created":
+      return res.status(401).send({ message: "Cliente já registrado." });
     case "object-invalid":
-      return res.status(401).send({ message: "Usuário inválido." });
+      return res.status(401).send({ message: "Cliente inválido." });
     case "invalid-password":
       return res.status(401).send({ message: "Dados inválidos" });
     default:

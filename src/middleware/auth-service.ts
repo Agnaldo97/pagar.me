@@ -5,7 +5,7 @@ import { errorHandler, } from "../errors/Login";
 import { ServiceError } from "../utils/ServiceError";
 
 export async function generateToken(data: any) {
-  let period = 60 * 5;
+  let period = 60 * 30;
   return jwt.sign({ data: data }, config.SALT_KEY, { expiresIn: period })
 }
 
@@ -21,7 +21,7 @@ export async function decodeToken(
         `bearer ${req.query.t || req.body.authToken}`;
       if (!token) return next();
 
-      req.user = await verify(token.split(" ")[1]);
+      req.client = await verify(token.split(" ")[1]);
     }
     next();
   } catch (err) {
