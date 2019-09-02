@@ -1,18 +1,22 @@
 import * as express from "express";
 import * as config from "./config";
 import * as morgan from "morgan";
-// import { router as apiRoutes } from "./routes";
-import cors = require('cors')
+import { router as apiRoutes } from "./routes";
+import { cors } from "./middleware/cors";
+import * as bodyParser from "body-parser";
 
 const app = express();
 
-app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(bodyParser.json({ limit: "5mb" }));
+app.use(cors);
 
 if (config.ENV === "development") {
   app.use(morgan("dev"));
 }
 
-// app.use("/api", apiRoutes);
+app.use("/api", apiRoutes);
 
 module.exports = app;
 

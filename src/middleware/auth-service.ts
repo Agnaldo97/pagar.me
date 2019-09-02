@@ -3,8 +3,8 @@ import * as config from "../config";
 import { NextFunction, Request, Response } from "express";
 
 export async function generateToken(data: any) {
-  let period = "5m";
-  return await jwt.sign(data, config.SALT_KEY, { expiresIn: period });
+  let period = 60 * 5;
+  return jwt.sign({ data: data }, config.SALT_KEY, { expiresIn: period })
 }
 
 export async function decodeToken(
