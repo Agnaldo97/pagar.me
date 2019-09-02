@@ -1,6 +1,8 @@
 import * as jwt from "jsonwebtoken";
 import * as config from "../config";
 import { NextFunction, Request, Response } from "express";
+import { errorHandler, } from "../errors/Login";
+import { ServiceError } from "../utils/ServiceError";
 
 export async function generateToken(data: any) {
   let period = 60 * 5;
@@ -23,7 +25,7 @@ export async function decodeToken(
     }
     next();
   } catch (err) {
-    throw "invalid-token";
+    errorHandler(err, res, next);
   }
 }
 
@@ -31,7 +33,7 @@ export function verify(token: string): Promise<any> {
   return new Promise<any>((resolve, reject) => {
     jwt.verify(token, config.SALT_KEY, (err, decoded: any) => {
       if (err || !decoded) {
-        throw "invalid-token";
+        throw new ServiceError(err.message)
       }
       resolve(decoded);
     });
