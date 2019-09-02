@@ -46,12 +46,16 @@ Ao criar um usuário ou criar uma nova transação, é feita algumas válidaçõ
 
 ## Exemplo Postman:
 
+### Login:
 ![](/prints/login.jpeg)
 
+### Nova Transação:
 ![](/prints/novaTransacao.jpeg)
 
-![](/prints/login.pjpegng)
+### Waiting Funds:
+![](/prints/espera.pjpe)
 
+### Available:
 ![](/prints/disponiveis.jpeg)
 
 
