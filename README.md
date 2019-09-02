@@ -53,7 +53,7 @@ Ao criar um usuário ou criar uma nova transação, é feita algumas válidaçõ
 ![](/prints/novaTransacao.jpeg)
 
 ### Waiting Funds:
-![](/prints/espera.pjpe)
+![](/prints/espera.jpeg)
 
 ### Available:
 ![](/prints/disponiveis.jpeg)
