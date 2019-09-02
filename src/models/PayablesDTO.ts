@@ -1,4 +1,4 @@
-import { Model, Column, Table, PrimaryKey, AutoIncrement, BeforeCreate } from "sequelize-typescript";
+import { Model, Column, Table, PrimaryKey, AutoIncrement, DataType } from "sequelize-typescript";
 import { IPayables } from "../interfaces/IPayables";
 import { ITransaction } from "../interfaces/ITransaction";
 import * as config from "../config";
@@ -19,7 +19,7 @@ export class PayablesDTO extends Model implements IPayables {
     @Column({ field: "id_transacao" })
     transactionID!: number;
 
-    @Column({ field: "valor_pago" })
+    @Column({ field: "valor_pago", type: DataType.DECIMAL(10, 2) })
     amountPaid!: number;
 
 

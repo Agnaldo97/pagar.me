@@ -1,4 +1,4 @@
-import { Model, Column, Table, PrimaryKey, AutoIncrement, BeforeCreate } from "sequelize-typescript";
+import { Model, Column, Table, PrimaryKey, AutoIncrement, DataType } from "sequelize-typescript";
 import { ITransaction } from "../interfaces/ITransaction";
 
 @Table({ modelName: "transacao" })
@@ -8,7 +8,7 @@ export class TransactionDTO extends Model implements ITransaction {
     @Column
     id: number;
 
-    @Column({ field: "valor" })
+    @Column({ field: "valor", type: DataType.DECIMAL(10, 2) })
     value!: number;
 
     @Column({ field: "descricao" })
