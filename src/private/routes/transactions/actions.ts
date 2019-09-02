@@ -15,7 +15,7 @@ export async function createTransaction(
   try {
     const model: ITransaction = await transactionValidator.validateCreate(req.body);
     const transaction: ITransaction = await transactionService.create(model);
-    const payables = await payablesService.create(transaction);
+    const payables: IPayables = await payablesService.create(transaction);
 
     res.status(200).json({ transaction, payables });
   } catch (err) {
