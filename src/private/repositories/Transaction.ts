@@ -15,3 +15,23 @@ export async function create(transaction: ITransaction): Promise<TransactionDTO>
   });
   return response;
 }
+
+export async function findAvailable(email: string): Promise<Array<TransactionDTO>> {
+  const response = await TransactionDTO.findAll({
+    where: { 
+      emailClient: email,
+      paymentMethod: "debit_card"
+     }
+  });
+  return response;
+}
+
+export async function findWaitingFunds(email: string): Promise<Array<TransactionDTO>> {
+  const response = await TransactionDTO.findAll({
+    where: { 
+      emailClient: email,
+      paymentMethod: "credit_card"
+     }
+  });
+  return response;
+}

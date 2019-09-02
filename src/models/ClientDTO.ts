@@ -18,6 +18,8 @@ export class ClientDTO extends Model implements IClient {
     @Column
     email!: string;
 
+    data: string;
+
     @BeforeCreate
     public static async setPassword(client: { password: string }){
         const hash = await bcrypt.hash(client.password);

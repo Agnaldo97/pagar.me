@@ -21,7 +21,7 @@ export async function decodeToken(
         `bearer ${req.query.t || req.body.authToken}`;
       if (!token) return next();
 
-      req.client = await verify(token.split(" ")[1]);
+      req.client= await verify(token.split(" ")[1]);
     }
     next();
   } catch (err) {

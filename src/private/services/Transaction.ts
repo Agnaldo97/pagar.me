@@ -7,3 +7,13 @@ export async function create(transaction: ITransaction): Promise<TransactionDTO>
   return response;
 }
 
+export async function findAvailable(email: string): Promise<Array<TransactionDTO>> {
+  const response: Array<TransactionDTO> = await TransactionRepository.findAvailable(email);
+  return response;
+}
+
+export async function findWaitingFunds(email: string): Promise<Array<TransactionDTO>> {
+  const response: Array<TransactionDTO> = await TransactionRepository.findWaitingFunds(email);
+  return response;
+}
+

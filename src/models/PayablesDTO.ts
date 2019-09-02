@@ -36,7 +36,7 @@ export class PayablesDTO extends Model implements IPayables {
             payables.status = "paid"
             payables.paymentDate = new Date();
             //Calc Fee
-            payables.amountPaid = transaction.value - (transaction.value * config.FEE_CREDIT_CARD)
+            payables.amountPaid = transaction.value - (transaction.value * config.FEE_DEBIT_CARD)
        }
     }
 }

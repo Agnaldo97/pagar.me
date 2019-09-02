@@ -15,3 +15,8 @@ export async function create(transaction: ITransaction): Promise<PayablesDTO> {
   return response;
 }
 
+export async function findPayables(listIds: Array<number>): Promise<Array<PayablesDTO>> {
+  const response: Array<PayablesDTO> = await PayablesRepository.listIds(listIds);
+  return response;
+}
+
